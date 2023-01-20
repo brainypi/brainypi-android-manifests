@@ -1,5 +1,7 @@
 # Compile Android 9 (AOSP) for BrainyPi
 
+Android 9 compilation steps by community for BrainyPi. 
+
 ## Requirements 
 1.  Linux Laptop/PC with docker.
 2.  Minimum 200 GB of disk space. 
@@ -135,3 +137,8 @@ make -j$(nproc)
 2.  See the Flashing guides to flash android on BrainyPi
     1.  [Flash to Internal Storage (EMMC)](./Falshing_on_EMMC.md)
     2.  [Flash to SDcard](Falshing_on_SDcard.md)
+
+## Need Help? 
+
+-   Facing problems with Android compilation, Please report the problem on the forum [Link to forum](https://forum.brainypi.com/c/android/android-compilation/22)
+-   Facing problems with Android OS, Please report the problem on the forum [Link to forum](https://forum.brainypi.com/c/android/21)
