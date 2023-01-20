@@ -1,7 +1,7 @@
 # Compile Android 9 (AOSP) for BrainyPi
 
 ## Requirements 
-1.  Laptop/PC with docker installed.
+1.  Linux Laptop/PC with docker installed.
 2.  200 GB of disk space. 
 3.  Good internet speed. 
 
@@ -14,6 +14,7 @@
     b.  Compile Kernel 
     c.  Compile AOSP
 4.  Generate Android image.
+5.  Flashing Android to BrainyPi.
 
 ## 1. Setup docker container for compilation 
 
@@ -24,10 +25,11 @@
     cd brainypi-android-manifests
     docker build -t android-builder:10.x --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` .
     ```
-   
 1.  Run docker container 
     ```sh
-    docker run -it -d --name android-build android-builder:10.x /bin/bash
+    sudo mkdir -p /opt/brainypi-android-build
+    sudo chmod 777 /opt/brainypi-android-build
+    docker run -it -d -v /opt/brainypi-android-build:/home/android-builder --name android-build android-builder:10.x /bin/bash
     ```
 1.  Get access to the docker container shell
     ```sh 
@@ -35,6 +37,8 @@
     ```
     
 ## 2. Download source code
+
+**Note:** Run the commands below inside the docker container shell. 
 
 1.  Create your working folder 
     ```sh
@@ -55,7 +59,7 @@
     repo init -u https://github.com/brainypi/brainypi-android-manifests.git -b android-9.0 -m brainypi-android-9.0-release.xml
     repo sync -j$(nproc)
     ```
-1.  This will download the source code. 
+1.  Depending on your internet speed, it might take some time to download all the source code, total size of the is approximately 86GB
     
 ## 3. Compile Uboot, Kernel and AOSP
 
@@ -67,6 +71,8 @@ cd u-boot
 cd ..
 ```
 
+Compilation will generate images rk3399_loader_v_xxx.bin and uboot.img. 
+
 ### 3.b Compile Kernel
 
 ```sh
@@ -75,9 +81,12 @@ make rockchip_defconfig
 make rk3399-brainypi.img -j$(nproc)
 cd ..
 ```
+
+Compilation will generate images kernel.img and resource.img.
+
 ### 3.c Compile AOSP 
 
-#### Compile Android 9
+#### Compile Android 9 Tablet
 
 ```sh
 source build/envsetup.sh
@@ -94,3 +103,33 @@ make -j$(nproc)
 ```
 
 ## 4. Generate Android image
+
+1.  Pack compiled code into individual images
+    ```sh
+    ln -s RKTools/linux/Linux_Pack_Firmware/rockdev/ rockdev
+    ./mkimage.sh
+    ```
+2.  Generate Android image 
+    1.  For Android 9 Tablet 
+        ```sh 
+        cd rockdev
+        ln -s Image-rk3399 Image
+        ./mkupdate.sh
+        ./android-gpt.sh
+        ```
+    1.  For Android 9 TV 
+        ```sh
+        ln -s Image-rk3399_box Image
+        ./mkupdate.sh
+        ./android-gpt.sh
+        ```
+3.  Scripts will generate `Image/gpt.img`. This image can be flashed on EMMC or SDcard for BrainyPi.
+4.  Exit from the docker container shell
+    ```sh
+    exit 
+    ```
+
+## 5. Flashing Android image to BrainyPi
+
+1.  Generated Android image will be loacted in your system at `/opt/brainypi-android-build/brainypi-android/rockdev/Image/gpt.img`
+2.  
