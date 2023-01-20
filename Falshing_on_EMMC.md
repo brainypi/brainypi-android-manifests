@@ -3,7 +3,7 @@
 ## **1. Requirements**
 
 1. BrainyPi v1.0
-1. Compiled Android GPT image `gpi.img`
+1. Compiled Android GPT image `gpt.img`
 1. Linux Laptop/PC
 1. USB 5V 3A Power Supply 
    
@@ -23,8 +23,8 @@
 ## **2. Installing Tools and Drivers**
 
 1. Download the tools for flashing.
-   1. Tool for flashing - `rkdeveloptool-v1.32.zip` - link 
-   2. BrainyPi loader - `rk3399_loader_v1.20.119.bin` - link    
+   1. Tool for flashing - `rkdeveloptool-v1.32.zip` - [Download Link](https://github.com/brainypi/brainypi-android-manifests/raw/master/falshing_tools/rkdeveloptool-v1.32.zip) 
+   2. BrainyPi loader - `rk3399_loader_v1.20.119.bin` - [Download Link](https://github.com/brainypi/brainypi-android-manifests/raw/master/falshing_tools/rk3399_loader_v1.20.119.bin)    
 2. Extract the file rkdeveloptool-v1.32.zip
 3. Navigate to folder rkdeveloptool and Open a new Terminal in the folder. 
 4. Run these commands given below to compile and Install rkdeveloptool 
@@ -43,7 +43,7 @@
 
 5. Check if the tool was installed successfully. 
    ```sh
-   rkdeveloptool -v 
+   sudo rkdeveloptool -v 
    ```
    Output should be `rkdeveloptool ver 1.32`
 
@@ -74,24 +74,24 @@
 ## **4. Flash into eMMC**
 
 1. On your Laptop/PC, Open new Terminal
-2. Run the command `rkdeveloptool ld` it should show the board connected
+2. Run the command `sudo rkdeveloptool ld` it should show the board connected
    ![alt_text](images/image10.png "image_tooltip")
 
 
-3. Download the loader into eMMC by running the command
+3. Flash the BrainyPi loader into eMMC by running the command
    ```
-   rkdeveloptool db rk3399_loader_v1.20.119.bin
+   sudo rkdeveloptool db /path/to/rk3399_loader_v1.20.119.bin
    ```
 
 
-4. Download the GPT image to eMMC, by running the command 
+4. Flash the GPT image to eMMC, by running the command 
    ```sh
-   rkdeveloptool wl 0 gpt.img
+   sudo rkdeveloptool wl 0 /path/to/gpt.img
    ```
 
 5. Reboot the device by running the command 
    ```sh
-   rkdeveloptool rd
+   sudo rkdeveloptool rd
    ```
 
 6. Now the device should boot the new image on eMMC. 
