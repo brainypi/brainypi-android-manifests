@@ -23,7 +23,7 @@ Android 9 compilation steps by community for BrainyPi.
 1.  We will be building in a docker container to avoid build dependency problems. 
 1.  Build docker image
     ```sh
-    # Steps assume that you have cloned the repository 
+    git clone https://github.com/brainypi/brainypi-android-manifests.git  
     cd brainypi-android-manifests
     docker build -t android-builder:9.x --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` .
     ```
