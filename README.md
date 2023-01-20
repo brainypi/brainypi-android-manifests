@@ -1,9 +1,9 @@
 # Compile Android 9 (AOSP) for BrainyPi
 
 ## Requirements 
-1.  Linux Laptop/PC with docker installed.
-2.  200 GB of disk space. 
-3.  Good internet speed. 
+1.  Linux Laptop/PC with docker.
+2.  Minimum 200 GB of disk space. 
+3.  Good internet speed. (requires approx 86 GB download) 
 
 ## Overview of steps
 
