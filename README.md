@@ -10,9 +10,9 @@
 1.  [Setup docker container for compilation.](#1-setup-docker-container-for-compilation) 
 2.  [Download source code.](#2-download-source-code)
 3.  [Compile Uboot, Kernel and AOSP.](#3-compile-uboot-kernel-and-aosp)
-    a.  [Compile Uboot](#3a-compile-uboot)
-    b.  [Compile Kernel](#3b-compile-kernel) 
-    c.  [Compile AOSP](#3c-compile-aosp)
+    1.  [Compile Uboot](#3a-compile-uboot)
+    1.  [Compile Kernel](#3b-compile-kernel) 
+    1.  [Compile AOSP](#3c-compile-aosp)
 4.  [Generate Android image.](#4-generate-android-image)
 5.  [Flashing Android to BrainyPi.](#5-flashing-android-image-to-brainypi)
 
