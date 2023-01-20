@@ -2,7 +2,7 @@
 
 ## **1. Requirements**
 1. BrainyPi v1.0
-1. Compiled Android GPT image `gpi.img`
+1. Compiled Android GPT image `gpt.img`
 1. Linux Laptop/PC
 
 ## 2. Download Etcher
