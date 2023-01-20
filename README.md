@@ -140,5 +140,5 @@ make -j$(nproc)
 
 ## Need Help? 
 
--   Facing problems with Android compilation, Please report the problem on the forum [Link to forum](https://forum.brainypi.com/c/android/android-compilation/22)
--   Facing problems with Android OS, Please report the problem on the forum [Link to forum](https://forum.brainypi.com/c/android/21)
+-   Need help with **Android compilation**, Please report the problem on the forum [Link to forum](https://forum.brainypi.com/c/android/android-compilation/22)
+-   Facing problems with **Android OS**, Please report the problem on the forum [Link to forum](https://forum.brainypi.com/c/android/21)
