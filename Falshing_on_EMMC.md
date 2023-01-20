@@ -1,0 +1,97 @@
+# **Guide for Flashing to eMMC on Linux Host**
+
+## **1. Requirements**
+
+1. BrainyPi v1.0
+1. Compiled Android GPT image `gpi.img`
+1. Linux Laptop/PC
+1. USB 5V 3A Power Supply 
+   
+   ![alt_text](images/image2.jpg "image_tooltip")
+
+1. USB Type C cable 
+   ![alt_text](images/image3.png "image_tooltip")
+
+1. USB Male A to Male A cable
+
+   ![alt_text](images/image5.jpg "image_tooltip")
+
+1. USB to TTL Serial Cable **_(Optional)_**
+ 
+   ![alt_text](images/image7.jpg "image_tooltip")
+
+## **2. Installing Tools and Drivers**
+
+1. Download the tools for flashing.
+   1. Tool for flashing - `rkdeveloptool-v1.32.zip` - link 
+   2. BrainyPi loader - `rk3399_loader_v1.20.119.bin` - link    
+2. Extract the file rkdeveloptool-v1.32.zip
+3. Navigate to folder rkdeveloptool and Open a new Terminal in the folder. 
+4. Run these commands given below to compile and Install rkdeveloptool 
+   ```sh
+   # Install pre-reqsites
+   sudo apt-get install libudev-dev libusb-1.0-0-dev dh-autoreconf pkg-config libusb-1.0
+   # Compile 
+   autoreconf -i
+   ./configure
+   make 
+
+   # Install rkdeveloptool
+   sudo cp rkdeveloptool /usr/local/bin
+   sudo ldconfig
+   ```
+
+5. Check if the tool was installed successfully. 
+   ```sh
+   rkdeveloptool -v 
+   ```
+   Output should be `rkdeveloptool ver 1.32`
+
+
+## **3. Boot into MaskRom mode**
+
+1. Power off the board.
+2. Remove microSD card (if inserted before). 
+3. Connect **USB Male A to Male A cable** to Board’s Top USB 3.0 slot and to Laptop/PC.
+
+   ![alt_text](images/image1.jpg "image_tooltip")
+
+4. Press and hold the Maskrom key on the backside of the Board. 
+
+   ![alt_text](images/image4.jpg "image_tooltip")
+
+
+5. Power on the board. 
+6. Release the Maskrom key. (Important to release the key)
+7. Confirm that your board is in Maskrom mode by running the `lsusb` command
+
+   ![alt_text](images/image9.png "image_tooltip")
+
+
+    You should see “RK3399 in Mask ROM mode” message in the output
+
+
+## **4. Flash into eMMC**
+
+1. On your Laptop/PC, Open new Terminal
+2. Run the command `rkdeveloptool ld` it should show the board connected
+   ![alt_text](images/image10.png "image_tooltip")
+
+
+3. Download the loader into eMMC by running the command
+   ```
+   rkdeveloptool db rk3399_loader_v1.20.119.bin
+   ```
+
+
+4. Download the GPT image to eMMC, by running the command 
+   ```sh
+   rkdeveloptool wl 0 gpt.img
+   ```
+
+5. Reboot the device by running the command 
+   ```sh
+   rkdeveloptool rd
+   ```
+
+6. Now the device should boot the new image on eMMC. 
