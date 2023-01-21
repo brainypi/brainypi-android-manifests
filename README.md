@@ -25,17 +25,17 @@ Android 9 compilation steps by community for BrainyPi.
     ```sh
     git clone https://github.com/brainypi/brainypi-android-manifests.git  
     cd brainypi-android-manifests
-    docker build -t android-builder:9.x --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` .
+    sudo docker build -t android-builder:9.x --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` .
     ```
 1.  Run docker container 
     ```sh
     sudo mkdir -p /opt/brainypi-android-build
     sudo chmod 777 /opt/brainypi-android-build
-    docker run -it -d -v /opt/brainypi-android-build:/home/android-builder --name android-build android-builder:9.x /bin/bash
+    sudo docker run -it -d -v /opt/brainypi-android-build:/home/android-builder --name android-build android-builder:9.x /bin/bash
     ```
 1.  Get access to the docker container shell
     ```sh 
-    docker exec -it android-build /bin/bash 
+    sudo docker exec -it android-build /bin/bash 
     ```
     
 ## 2. Download source code
@@ -135,8 +135,8 @@ make -j$(nproc)
 
 1.  Generated Android image will be loacted in your system at `/opt/brainypi-android-build/brainypi-android/rockdev/Image/gpt.img`
 2.  See the Flashing guides to flash android on BrainyPi
-    1.  [Flash to Internal Storage (EMMC)](./Falshing_on_EMMC.md)
-    2.  [Flash to SDcard](Falshing_on_SDcard.md)
+    1.  [Flash to Internal Storage (EMMC)](./Flashing_on_EMMC.md)
+    2.  [Flash to SDcard](Flashing_on_SDcard.md)
 
 ## Need Help? 
 
