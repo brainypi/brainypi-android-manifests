@@ -4,7 +4,7 @@ Android 9 compilation steps by community for BrainyPi.
 
 ## Requirements 
 1.  Linux Laptop/PC with docker.
-2.  Minimum 200 GB of disk space. 
+2.  Minimum 250 GB of disk space. 
 3.  Good internet speed. (requires approx 86 GB download) 
 
 ## Overview of steps
