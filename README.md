@@ -44,8 +44,8 @@ Android 9 compilation steps by community for BrainyPi.
 
 1.  Create your working folder 
     ```sh
-    cd ~/
-    mkdir brainypi-android
+    cd /home/android-builder
+    mkdir -p brainypi-android
     cd brainypi-android 
     ```
     
