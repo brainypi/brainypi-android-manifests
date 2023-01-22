@@ -121,6 +121,7 @@ make -j$(nproc)
         ```
     1.  For Android 9 TV 
         ```sh
+        cd rockdev
         ln -s Image-rk3399_box Image
         ./mkupdate.sh
         ./android-gpt.sh
